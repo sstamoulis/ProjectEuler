@@ -8,38 +8,33 @@ import collections
 class Cache: #Empty class to act as a C struct
     pass
 
-D = {}
-q = 1
-Cache.primes = []
-
-def generate_primes(limit=None):
+def generate_primes():
     """ Generate an infinite sequence of prime numbers if no limit is specified.
-    limit: Return primes [2,limit]
     """
     # Maps composites to primes witnessing their compositeness.
     # This is memory efficient, as the sieve is not "run forward"
     # indefinitely, but only as long as required by the current
     # number being tested.
     #
-    global D
+    D = generate_primes.dictionary
     
-    # The running integer that's checked for primeness
-    global q
+    # Running integer
+    q = 1
 
-    for p in Cache.primes:
-        if limit is not None and p > limit: return
-        yield p
+    c = Cache.primes
 
     while True:
-        q+=1
-        if q not in D:
+        q +=1
+        if q <= c[-1]:
+            for q in itertools.dropwhile(lambda x: x < q, c):
+                yield q
+        elif q not in D:
             # q is a new prime.
             # Yield it and mark its first multiple that isn't
             # already marked in previous iterations
             #
             Cache.primes.append(q)
             D[q * q] = [q]            
-            if limit is not None and q > limit: return
             yield q
         else:
             # q is composite.  D[q] is the list of primes that
@@ -52,24 +47,26 @@ def generate_primes(limit=None):
                 D.setdefault(p + q, []).append(p)
             del D[q]
 
+generate_primes.dictionary = {4: [2]}
+Cache.primes = [2]
+
 def find_prime_factors(number):
     n = number
     r = {}
     for p in generate_primes():
-        if n == 1: break
-        if n == p:
-            r[n] = r[n] + 1 if n in r else 1
-            break
+        if p * p > n: break
         while n % p == 0:
+            r[p] = r.setdefault(p,0) + 1
             n = n // p
-            r[p] = r[p] + 1 if p in r else 1
+    if n > 1:
+        r[n] = r.setdefault(n,0) + 1
     return r
 
 def is_prime(number):
     """Check if number is prime
     """
     n = number
-    if n in cached_primes: return True
+    if n in Cache.primes: return True
     else:
         if n <= 1: return False
         elif n <= 3: return True
@@ -146,22 +143,12 @@ def get_all_digits(number):
 
 def find_all_factors(number):
     prime_factors = find_prime_factors(number)
-    results = collections.OrderedDict([(number, prime_factors)])
-    i = 0
-    while i < len(results):
-        n = results.keys()[i]
-        prime_factors = results[n]
-        for p in prime_factors:
-            if n // p in results: continue
-            new_dict = copy.deepcopy(prime_factors)
-            new_dict[p]-=1
-            if new_dict[p] < 1: del new_dict[p]
-            results[n // p] = new_dict
-        i+=1
-    return results.keys()
+    values = [[(factor**e) for e in range(exp+1)] for factor, exp in prime_factors.viewitems()]
+    results = [prod(x) for x in itertools.product(*values)]
+    return results
 
 def find_proper_factors(number):
-    return [x for x in find_all_factors(number) if x != number]
+    return find_all_factors(number)[:-1]
 
 def generate_amicable_pairs(limit=None):
     s = generate_amicable_pairs.sum_of_proper_factors
@@ -175,21 +162,27 @@ def generate_amicable_pairs(limit=None):
 
 generate_amicable_pairs.sum_of_proper_factors = collections.OrderedDict([(220, 284)])
 
-def generate_abudant_numbers():
+def generate_abundant_numbers():
     # https://en.wikipedia.org/wiki/Abundant_number#Properties
-    c = generate_abudant_numbers.cache
-    for n in c:
-        yield n
-    for n in itertools.count(c[-1]+1):
-        found = False
-        for d in c:
-            if d>n//2: break
-            if n%d==0:
+    a = Cache.abundant_numbers
+    p = Cache.perfect_numbers
+    d = Cache.deficient_numbers
+    n = 1
+    while True:
+        if n < a[-1]:
+            for n in itertools.dropwhile(lambda x: x < n, a):
                 yield n
-                found=True
-                break
-        if found: continue
-        if sum(find_proper_factors(n)) > n:
-            yield n
+        else:
+            s = sum(find_proper_factors(n))
+            if s > n:
+                a.append(n)
+                yield n
+            elif s == n:
+                p.append(n)
+            else:
+                d.append(n)
+        n+=1
    
-generate_abudant_numbers.cache = [12]
+Cache.abundant_numbers = [12]
+Cache.perfect_numbers = []
+Cache.deficient_numbers = []

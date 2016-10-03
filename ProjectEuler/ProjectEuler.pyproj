@@ -86,6 +86,9 @@
     <Compile Include="problem9.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="test.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tools.py">
       <SubType>Code</SubType>
     </Compile>
