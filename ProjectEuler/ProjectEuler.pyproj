@@ -5,14 +5,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f2ecf83b-37f9-42e0-b488-0f9cf9d00225</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>problem23.py</StartupFile>
+    <StartupFile>problem25.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>ProjectEuler</Name>
     <RootNamespace>ProjectEuler</RootNamespace>
-    <InterpreterId>{0cea13ac-c349-4ff9-890f-9c71c9ed5741}</InterpreterId>
+    <InterpreterId>{02396336-8636-4d3c-a1e9-e06f8d43cbfa}</InterpreterId>
     <InterpreterVersion>2.7</InterpreterVersion>
     <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
@@ -71,6 +71,12 @@
     <Compile Include="problem23.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="problem24.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem25.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="problem5.py">
       <SubType>Code</SubType>
     </Compile>
@@ -94,8 +100,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="data\problem22\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="data\problem22\data.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Interpreter Include="env\">
-      <Id>{0cea13ac-c349-4ff9-890f-9c71c9ed5741}</Id>
+      <Id>{02396336-8636-4d3c-a1e9-e06f8d43cbfa}</Id>
       <BaseInterpreter>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</BaseInterpreter>
       <Version>2.7</Version>
       <Description>env (Python 2.7)</Description>
@@ -105,14 +119,6 @@
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
       <Architecture>X86</Architecture>
     </Interpreter>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="data\" />
-    <Folder Include="data\problem22\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include=".gitignore" />
-    <Content Include="data\problem22\data.txt" />
   </ItemGroup>
   <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
   <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />

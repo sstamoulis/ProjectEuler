@@ -4,9 +4,19 @@ import operator
 import itertools
 import copy
 import collections
+import time
 
 class Cache: #Empty class to act as a C struct
     pass
+
+class Timer:
+    def __enter__(self):
+        self.start = time.clock()
+        return self
+    
+    def __exit__(self, *args):
+        self.end = time.clock()
+        self.interval = self.end - self.start
 
 def generate_primes():
     """ Generate an infinite sequence of prime numbers if no limit is specified.
@@ -143,7 +153,7 @@ def get_all_digits(number):
 
 def find_all_factors(number):
     prime_factors = find_prime_factors(number)
-    values = [[(factor**e) for e in range(exp+1)] for factor, exp in prime_factors.viewitems()]
+    values = [[(factor ** e) for e in range(exp + 1)] for factor, exp in prime_factors.viewitems()]
     results = [prod(x) for x in itertools.product(*values)]
     return results
 
@@ -186,3 +196,9 @@ def generate_abundant_numbers():
 Cache.abundant_numbers = [12]
 Cache.perfect_numbers = []
 Cache.deficient_numbers = []
+
+def generate_fibonacci():
+    a,b=0,1
+    while True:
+        yield a
+        a,b = b,a+b
