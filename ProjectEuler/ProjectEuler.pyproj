@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>f2ecf83b-37f9-42e0-b488-0f9cf9d00225</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>problem23.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>ProjectEuler</Name>
+    <RootNamespace>ProjectEuler</RootNamespace>
+    <InterpreterId>{0cea13ac-c349-4ff9-890f-9c71c9ed5741}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
+    <IsWindowsApplication>False</IsWindowsApplication>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="problem10.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem11.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem12.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem13.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem14.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem15.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem16.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem17.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem18.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem19.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem20.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem21.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem22.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem23.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem5.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem6.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem7.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem8.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem9.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tools.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>{0cea13ac-c349-4ff9-890f-9c71c9ed5741}</Id>
+      <BaseInterpreter>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</BaseInterpreter>
+      <Version>2.7</Version>
+      <Description>env (Python 2.7)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X86</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="data\problem22\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="data\problem22\data.txt" />
+  </ItemGroup>
+  <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
+  <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
