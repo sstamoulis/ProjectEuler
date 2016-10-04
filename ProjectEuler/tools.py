@@ -102,7 +102,9 @@ def digit_sum(number, base=10): #https://en.wikipedia.org/wiki/Digit_sum
     x,b = number,base
     return sum([(1 / b ** n) * (x % b ** (n + 1) - x % b ** n) for n in range(0, int(math.log(x,b)) + 1)])
 
-def prod(sequence): return reduce(operator.mul, sequence, 1)
+def prod(sequence):
+    from functools import reduce
+    return reduce(operator.mul, sequence, 1)
 
 def number_to_words(number):
     """
